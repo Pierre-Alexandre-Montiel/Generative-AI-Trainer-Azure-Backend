@@ -7,22 +7,35 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-jobs:
-- job: Build
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
-  
-- job: Lint
-  displayName: 'Run ESLint'
-  steps:
-  - script: npm install
-    displayName: 'Install Dependencies'
-  - script: npx eslint .
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    displayName: 'Build App'
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '10.x'
+      displayName: 'Install Node.js'
+    - script: |
+        npm install
+        npm run build
+      displayName: 'npm install and build'
+- stage: Lint
+  jobs:
+  - job: Lint
     displayName: 'Run ESLint'
+    steps:
+    - script: npm install
+      displayName: 'Install Dependencies'
+    - script: npm run lint
+      displayName: 'Run ESLint'
+- stage: Unit Tests
+  jobs:
+  - job: UnitTests
+    displayName: 'Run Unit Tests'
+    steps:
+    - script: npm install
+      displayName: 'Install Dependencies'
+    - script: npm run test
+      displayName: 'Run Unit Tests'
