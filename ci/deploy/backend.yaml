@@ -9,7 +9,7 @@ pool:
 
 jobs:
 - job: Build
-  displayName: 'Run ESLint'
+  displayName: 'Build App'
   steps:
   - task: NodeTool@0
     inputs:
@@ -25,5 +25,5 @@ jobs:
   steps:
   - script: npm install
     displayName: 'Install Dependencies'
-  - script: npx eslint .
+  - script: npm run lint .
     displayName: 'Run ESLint'
