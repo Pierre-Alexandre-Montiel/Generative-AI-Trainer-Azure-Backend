@@ -3,6 +3,6 @@
   steps:
   - task: CmdLine@2
     inputs:
-          script: yarn run lint
+          script: npm run lint
           workingDirectory: 'src/functions'
     displayName: 'Lint'
