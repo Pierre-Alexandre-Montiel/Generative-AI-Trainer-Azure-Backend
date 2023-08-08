@@ -1,0 +1,8 @@
+- job: Backend Code Quality
+  displayName: Code quality for backend
+  steps:
+  - task: CmdLine@2
+    inputs:
+          script: yarn run lint
+          workingDirectory: 'src/functions'
+    displayName: 'Lint'
