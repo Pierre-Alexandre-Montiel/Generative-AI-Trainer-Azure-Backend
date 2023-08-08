@@ -30,7 +30,7 @@ stages:
       displayName: 'Install Dependencies'
     - script: npm run lint
       displayName: 'Run ESLint'
-- stage: Unit Tests
+- stage: Tests
   jobs:
   - job: UnitTests
     displayName: 'Run Unit Tests'
