@@ -28,5 +28,14 @@ stages:
     steps:
     - script: npm install
       displayName: 'Install Dependencies'
-    - script: npm run lint .
+    - script: npm run lint
       displayName: 'Run ESLint'
+- stage: Unit Tests
+  jobs:
+  - job: Unit Tests
+    displayName: 'Run Unit Tests'
+    steps:
+    - script: npm install
+      displayName: 'Install Dependencies'
+    - script: npm run test
+      displayName: 'Run Unit Tests'
